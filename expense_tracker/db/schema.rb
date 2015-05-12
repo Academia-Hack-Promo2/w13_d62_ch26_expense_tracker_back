@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20150512151844) do
   create_table "transactions", force: :cascade do |t|
     t.date     "date"
     t.integer  "t_type",      limit: 1
-    t.decimal  "amount",                 precision: 11, scale: 2
+    t.float    "amount"
     t.string   "description", limit: 50
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end
