@@ -14,21 +14,21 @@
 ActiveRecord::Schema.define(version: 20150513025524) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "category_title"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "category_title", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "transactions", force: :cascade do |t|
     t.date     "date"
     t.integer  "t_type",      limit: 1
-    t.float    "amount"
+    t.float    "amount",      limit: 24
     t.string   "description", limit: 50
-    t.integer  "category_id"
+    t.integer  "category_id", limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  add_index "transactions", ["category_id"], name: "index_transactions_on_category_id"
+  add_index "transactions", ["category_id"], name: "index_transactions_on_category_id", using: :btree
 
 end
