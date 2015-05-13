@@ -9,15 +9,21 @@ class TransactionsController < ApplicationController
 		end
   end
 
-  def update
-  		transaction = Transaction.exists?(params[:id].to_i)
-  		if transaction 
-  			o = Transaction.update (params[:id],permit)
-  			render json: o
-  		else
-  			render json: transaction.errors.messages
-  		end
+  def index
+    transactions = Transaction.fechas(params[:fecha_ini],params[:fecha_fin])
+    render json: transactions    
   end
+
+  
+# def update
+#   		transaction = Transaction.exists?(params[:id])
+#   		if transaction 
+#   			o = Transaction.update (params[:id]t)
+#   			render json: o
+#   		else
+#   			render json: transaction.errors.messages
+#   		end
+#   end
 
 
   private
