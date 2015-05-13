@@ -18,7 +18,16 @@ class TransactionsController < ApplicationController
   			render json: transaction.errors.messages
   		end
   end
-
+  def destroy
+    valid =  Transaction.exists?((params[:id].to_i))
+	if valid
+		transaction = Transaction.find((params[:id].to_i))
+		transaction.delete
+		render json: transaction.to_json
+	else
+		render json: transaction.errors.messages
+	end
+  end
 
   private
 
