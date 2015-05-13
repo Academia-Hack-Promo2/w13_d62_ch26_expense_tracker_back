@@ -9,6 +9,17 @@ class TransactionsController < ApplicationController
 		end
   end
 
+  def update
+  		transaction = Transaction.exists?(params[:id].to_i)
+  		if transaction 
+  			o = Transaction.update (params[:id],permit)
+  			render json: o
+  		else
+  			render json: transaction.errors.messages
+  		end
+  end
+
+
   private
 
 	def permit
