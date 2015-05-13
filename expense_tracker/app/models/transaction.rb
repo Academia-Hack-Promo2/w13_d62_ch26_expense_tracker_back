@@ -6,5 +6,5 @@ class Transaction < ActiveRecord::Base
 				:format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, 
 				:numericality => {:greater_than => 0 }
 	validates :description, presence: true, length: {maximum: 50}
-
+  belongs_to :category
 end
