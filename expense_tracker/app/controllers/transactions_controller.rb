@@ -1,43 +1,50 @@
 class TransactionsController < ApplicationController
-  def create
-  	transaction = Transaction.new(permit)
-		if transaction.valid? 
-			transaction.save
-			render json: transaction
-		else
-			render json: transaction.errors.messages
-		end
-  end
 
   def index
-    transactions = Transaction.fechas(params[:fecha_ini],params[:fecha_fin])
-    render json: transactions    
+    transaction = Transaction.fechas(params[:fecha_ini],params[:fecha_din])
+    render json: transaction
+  end    
+
+  def create
+  	transaction = Transaction.new(permit)
+    if transaction.valid? 
+     transaction.save
+     render json: transaction
+   else
+     render json: transaction.errors.messages
+   end
+ end
+
+ def update
+  transaction = Transaction.exists?(params[:id].to_i)
+  if transaction
+   transaction = Transaction.update(params[:id],permit)
+   render json: transaction
+ else
+   render json: transaction.errors.messages
+ end
+end
+
+def destroy
+  valid =  Transaction.exists?((params[:id].to_i))
+  if valid
+    transaction = Transaction.find((params[:id].to_i))
+    transaction.delete
+    render json: transaction.to_json
+  else
+    render json: transaction.errors.messages
   end
-  
-# def update
-#   		transaction = Transaction.exists?(params[:id])
-#   		if transaction 
-#   			o = Transaction.update (params[:id]t)
-#   			render json: o
-#   		else
-#   			render json: transaction.errors.messages
-#   		end
-#   end
+end
 
-  def destroy
-    valid =  Transaction.exists?((params[:id].to_i))
-	if valid
-		transaction = Transaction.find((params[:id].to_i))
-		transaction.delete
-		render json: transaction.to_json
-	else
-		render json: transaction.errors.messages
-	end
-  end
+def categoryIndex
+  transaction = Transaction.where("category_id = ?",params[:id])
+  render json: transaction
+end
 
-  private
+private
 
-	def permit
-		params.permit(:date, :t_type, :amount, :description)
-	end	
+def permit
+  params.permit(:date, :t_type, :amount, :description, :category_id)
+end	
+
 end
