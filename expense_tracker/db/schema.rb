@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513025524) do
+ActiveRecord::Schema.define(version: 20150513203127) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category_title", limit: 255
@@ -22,19 +22,14 @@ ActiveRecord::Schema.define(version: 20150513025524) do
   create_table "transactions", force: :cascade do |t|
     t.date     "date"
     t.integer  "t_type",      limit: 1
-    t.float    "amount",      limit: 24
+    t.decimal  "amount",                 precision: 10
     t.string   "description", limit: 50
-<<<<<<< HEAD
-=======
     t.integer  "category_id", limit: 4
->>>>>>> 6d7ec35f174e771a59b2af03818b0563cfe848d8
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
-<<<<<<< HEAD
-=======
   add_index "transactions", ["category_id"], name: "index_transactions_on_category_id", using: :btree
 
->>>>>>> 6d7ec35f174e771a59b2af03818b0563cfe848d8
+  add_foreign_key "transactions", "categories"
 end
