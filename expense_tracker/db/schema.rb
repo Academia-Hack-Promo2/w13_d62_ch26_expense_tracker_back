@@ -24,11 +24,17 @@ ActiveRecord::Schema.define(version: 20150513025524) do
     t.integer  "t_type",      limit: 1
     t.float    "amount",      limit: 24
     t.string   "description", limit: 50
+<<<<<<< HEAD
+=======
     t.integer  "category_id", limit: 4
+>>>>>>> 6d7ec35f174e771a59b2af03818b0563cfe848d8
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
+<<<<<<< HEAD
+=======
   add_index "transactions", ["category_id"], name: "index_transactions_on_category_id", using: :btree
 
+>>>>>>> 6d7ec35f174e771a59b2af03818b0563cfe848d8
 end

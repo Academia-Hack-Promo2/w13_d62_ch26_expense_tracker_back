@@ -43,6 +43,7 @@ end
 
 private
 
+
 def permit
   params.permit(:date, :t_type, :amount, :description, :category_id)
 end	
