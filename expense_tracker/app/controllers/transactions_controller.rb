@@ -20,6 +20,16 @@ class TransactionsController < ApplicationController
   end
 
 
+    def destroy
+    transaction = Transaction.exists?(params[:id])
+    if exist
+      o = Transaction.destroy(params[:id])
+      render json: {"mensaje"=> "Transaccion eliminada"}
+    else
+      render json: {"Error" => "La transaccion no existe"}
+    end
+  end
+
   private
 
 	def permit

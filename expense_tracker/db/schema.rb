@@ -24,11 +24,8 @@ ActiveRecord::Schema.define(version: 20150513025524) do
     t.integer  "t_type",      limit: 1
     t.float    "amount"
     t.string   "description", limit: 50
-    t.integer  "category_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  add_index "transactions", ["category_id"], name: "index_transactions_on_category_id"
 
 end
