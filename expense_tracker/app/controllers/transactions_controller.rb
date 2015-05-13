@@ -13,7 +13,6 @@ class TransactionsController < ApplicationController
     transactions = Transaction.fechas(params[:fecha_ini],params[:fecha_fin])
     render json: transactions    
   end
-
   
 # def update
 #   		transaction = Transaction.exists?(params[:id])
@@ -25,6 +24,16 @@ class TransactionsController < ApplicationController
 #   		end
 #   end
 
+  def destroy
+    valid =  Transaction.exists?((params[:id].to_i))
+	if valid
+		transaction = Transaction.find((params[:id].to_i))
+		transaction.delete
+		render json: transaction.to_json
+	else
+		render json: transaction.errors.messages
+	end
+  end
 
   private
 
