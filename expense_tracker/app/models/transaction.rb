@@ -1,6 +1,6 @@
 class Transaction < ActiveRecord::Base
 
-	TYPE = { "ingreso" => 1, "deposito" => 2}
+	TYPE = { ingreso: 1, egreso: 2}
 
 	validates :date, presence: true
 	validates :t_type, presence: true, length: {maximum: 1}, :numericality => { :only_integer => true, :greater_than => 0 } 
@@ -14,7 +14,7 @@ class Transaction < ActiveRecord::Base
 	end
 
 	def self.type (var)
-		var = TYPE[var] 
+		var = TYPE[var.to_sym] 
 		var
 	end	
 
