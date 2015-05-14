@@ -7,7 +7,7 @@ class Transaction < ActiveRecord::Base
 	validates :amount, presence: true, length: {maximum: 11}, :numericality => {:greater_than => 0 }
 	validates :description, presence: true, length: {maximum: 50}
 
-	has_and_belongs_to_many :category
+	belongs_to :category
 
 	def self.fechas (fecha_ini, fecha_fin)
 		Transaction.where("date>=? and date <=?", fecha_ini, fecha_fin)  	
