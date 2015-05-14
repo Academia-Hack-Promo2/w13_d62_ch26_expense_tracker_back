@@ -40,6 +40,7 @@ private
 
 
 def permit
+  params[:t_type] = Transaction.type(params[:t_type])
   params.permit(:date, :t_type, :amount, :description, :category_id)
 end	
 
