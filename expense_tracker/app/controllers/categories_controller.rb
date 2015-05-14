@@ -31,13 +31,15 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def transactions_categorys
+    category = Category.find(params[:category_id])
+    render json: {category: category, transactions: category.transactions.fechas(params[:fecha_ini],params[:fecha_fin])}
+  end
+
   def index
     objeto = Category.all
     render json: objeto  
   end
-  
-
-
   
   private
   

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :transactions
-  resources :categories
-  get "/transactions/categories/:id" => "transactions#categoryIndex"
+  resources :categories do
+    get '/transactions' => 'categories#transactions_categorys'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

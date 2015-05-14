@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
 
   def index
-    transaction = Transaction.fechas(params[:fecha_ini],params[:fecha_din])
+    transaction = Transaction.fechas(params[:fecha_ini],params[:fecha_fin])
     render json: transaction
   end    
 
@@ -34,11 +34,6 @@ def destroy
   else
     render json: transaction.errors.messages
   end
-end
-
-def categoryIndex
-  transaction = Transaction.where("category_id = ?",params[:id])
-  render json: transaction
 end
 
 private
