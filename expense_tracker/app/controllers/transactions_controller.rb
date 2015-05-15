@@ -36,6 +36,11 @@ def destroy
   end
 end
 
+def report
+    transaction = Transaction.report
+    render json: transaction
+end
+
 private
 
 

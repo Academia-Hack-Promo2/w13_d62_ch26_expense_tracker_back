@@ -18,6 +18,12 @@ class Transaction < ActiveRecord::Base
 		var
 	end	
 
+	def self.report
+
+		Transaction.group("category_id").sum("amount")
+
+	end
+
 	# def self.category (fecha_ini, fecha_fin)
 	# 	Transaction.where("category_id=?",category_id)  	
 	# end
