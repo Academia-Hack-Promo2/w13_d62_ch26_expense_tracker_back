@@ -1,5 +1,10 @@
 class TransactionsController < ApplicationController
 
+  def list
+    transaction = Transaction.all
+    render json: transaction 
+  end
+
   def index
     transaction = Transaction.fechas(params[:fecha_ini],params[:fecha_fin])
     render json: transaction
