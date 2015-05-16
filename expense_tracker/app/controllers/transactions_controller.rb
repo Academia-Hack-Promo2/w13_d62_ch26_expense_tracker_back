@@ -3,11 +3,11 @@ class TransactionsController < ApplicationController
   def index
     transaction = Transaction.fechas(params[:fecha_ini],params[:fecha_fin])
     render json: transaction
-  end    
+  end
 
   def create
   	transaction = Transaction.new(permit)
-    if transaction.valid? 
+    if transaction.valid?
      transaction.save
      render json: transaction
    else
@@ -37,7 +37,7 @@ def destroy
 end
 
 def report
-    transaction = Transaction.report
+    transaction = Transaction.report(params[:month])
     render json: transaction
 end
 
@@ -47,6 +47,6 @@ private
 def permit
   params[:t_type] = Transaction.type(params[:t_type])
   params.permit(:date, :t_type, :amount, :description, :category_id)
-end	
+end
 
 end
