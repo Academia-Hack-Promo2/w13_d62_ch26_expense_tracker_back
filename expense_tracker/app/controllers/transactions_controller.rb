@@ -41,7 +41,7 @@ def report
     render json: transaction
 end
 
-def entire
+def show
     transaction = Transaction.all
     render json: transaction
 end
