@@ -18,6 +18,11 @@ class Transaction < ActiveRecord::Base
 		var
 	end
 
+	# Se utilizo la funcion extract de SQL para obtener el mes de
+	# el campo date y comparar con el parametro recibido.
+	# Esta solucion no funciona en SQLite3 se utilizaria
+	# en cambio strftime.
+	
 	def self.report(month)
 
 		Transaction.where('extract(month from date) = ?', month).group("category_id").sum("amount")
