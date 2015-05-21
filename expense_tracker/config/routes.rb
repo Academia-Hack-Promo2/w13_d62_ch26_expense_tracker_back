@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :categories do
     get '/transactions' => 'categories#transactions_categorys'
   end
-
+  get 'categoriesAllTransactions' => 'categories#categorys_all_transactions'
   get 'reporte' => 'transactions#report'
   get 'todas' => 'transactions#show'
 

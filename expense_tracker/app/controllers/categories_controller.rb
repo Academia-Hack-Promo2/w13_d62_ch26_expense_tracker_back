@@ -36,6 +36,11 @@ class CategoriesController < ApplicationController
     render json: {category: category, transactions: category.transactions.fechas(params[:fecha_ini],params[:fecha_fin])}
   end
 
+  def categorys_all_transactions
+    categorias = categorias_transactions = Category.includes(:transactions)
+    render json: categorias, include: :transactions
+  end
+
   def index
     objeto = Category.all
     render json: objeto  
